@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/src/register.dart';
 import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,12 +19,16 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // appBar: AppBar(title: Text('Login'),),
-      backgroundColor: const Color(0xff2D2D8B),
+      backgroundColor:Color(0xFF2D2D8B),
       body: Column(
         children: [
           const SizedBox(height:80),
-          const Text(" The Movies ",
-          style: TextStyle(fontSize: 50,color: Colors.red, fontWeight: FontWeight.bold)),
+          Container(
+            height: 55, width:400,
+            child:Image.asset("assets/Logo.png",  fit: BoxFit.fitHeight),
+          ),
+          // const Text(" The Movies ",
+          // style: TextStyle(fontSize: 50,color: Colors.red, fontWeight: FontWeight.bold)),
           Padding(
             padding: const EdgeInsets.fromLTRB(30.0,60.0,30.0,20.0),
             child: TextField(
@@ -69,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: (){
                       auth.signInWithEmailAndPassword(email: _email, password: _password).then((_){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        Navigator.push(context,MaterialPageRoute(builder: (_) => const HomeScreen()));
                       });
 
                     },
@@ -84,10 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   onPressed: (){
-                    auth.createUserWithEmailAndPassword(email: _email, password: _password).then((_){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
-                    });
-
+                      Navigator.push(context,MaterialPageRoute(builder: (_) => const Register())
+                    );
                   },
                   child: const Text('Signup'),
                 )
