@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/src/shows.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+import 'favs.dart';
 import 'login.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,10 +51,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            title: const Text('TheMovies',
-                style: TextStyle(color: Colors.white, fontSize: 25)),
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false),
+          title: const Text('TheMovies',
+              style: TextStyle(color: Colors.white, fontSize: 25)),
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(
+          //       Icons.favorite,
+          //       color: Colors.red[300],
+          //     ),
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context, MaterialPageRoute(builder: (_) => Favs()));
+          //     },
+          //   )
+          // ],
+        ),
         body: ListView(
           children: [
             Trend(trending: trendingList),

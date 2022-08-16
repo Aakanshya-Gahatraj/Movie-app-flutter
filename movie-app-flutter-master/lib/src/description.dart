@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/src/favs.dart';
 import 'package:movie_app/src/home.dart';
 
 class MovieDesc extends StatelessWidget {
@@ -79,6 +80,20 @@ class MovieDesc extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 15),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(100, 50),
+                primary: Color.fromARGB(255, 248, 60, 56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16), // <-- Radius
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => Favs(text: name)));
+              },
+              child: const Text('Add to Watch List')),
         ],
       ),
     );
@@ -163,6 +178,20 @@ class TvDesc extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 15),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(100, 50),
+                primary: Color.fromARGB(255, 248, 60, 56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16), // <-- Radius
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => Favs(text: name)));
+              },
+              child: const Text('Add to Watch List')),
         ],
       ),
     );
