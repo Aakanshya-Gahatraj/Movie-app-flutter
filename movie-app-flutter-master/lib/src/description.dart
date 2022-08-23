@@ -1,10 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/src/favs.dart';
 import 'package:movie_app/src/home.dart';
 
-class MovieDesc extends StatelessWidget {
-  final String name, description, bannerurl, posterurl, vote, launch_on;
-
+class MovieDesc extends StatefulWidget {
   const MovieDesc(
       {Key? key,
       required this.name,
@@ -14,6 +13,30 @@ class MovieDesc extends StatelessWidget {
       required this.vote,
       required this.launch_on})
       : super(key: key);
+
+  final String name, description, bannerurl, posterurl, vote, launch_on;
+
+  @override
+  State<MovieDesc> createState() =>
+      _MovieDescState(name, description, bannerurl, posterurl, vote, launch_on);
+}
+
+class _MovieDescState extends State<MovieDesc> {
+  String name, description, bannerurl, posterurl, vote, launch_on;
+  _MovieDescState(this.name, this.description, this.bannerurl, this.posterurl,
+      this.vote, this.launch_on);
+  // final controller = TextEditingController();
+
+  Future createFav(
+      {required String name,
+      required bool watched,
+      required int rating}) async {
+    final db = FirebaseFirestore.instance.collection('favs').doc();
+
+    final json = {'name': name, 'watched': watched, 'rating': rating};
+
+    await db.set(json);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +113,10 @@ class MovieDesc extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => Favs(text: name)));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (_) => Favs(text: name)));
+                // name = controller.text;
+                createFav(name: name, rating: 1, watched: false);
               },
               child: const Text('Add to Watch List')),
         ],
@@ -188,8 +213,8 @@ class TvDesc extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => Favs(text: name)));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (_) => Favs(name: name)));
               },
               child: const Text('Add to Watch List')),
         ],

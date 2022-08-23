@@ -55,18 +55,18 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Colors.white, fontSize: 25)),
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(
-          //       Icons.favorite,
-          //       color: Colors.red[300],
-          //     ),
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context, MaterialPageRoute(builder: (_) => Favs()));
-          //     },
-          //   )
-          // ],
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.favorite,
+                color: Color.fromARGB(255, 241, 48, 48),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Favs()));
+              },
+            )
+          ],
         ),
         body: ListView(
           children: [
