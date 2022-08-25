@@ -21,91 +21,115 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xFF2D2D8B), elevation: 0),
-      resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFF2D2D8B),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          Container(
-            height: 60,
-            width: 400,
-            child: Image.asset(
-              "assets/Logo.png",
-              fit: BoxFit.fitHeight,
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color.fromARGB(255, 31, 7, 55),
+              Color.fromARGB(255, 0, 0, 0),
+            ],
           ),
-          const SizedBox(height: 50),
-          Container(
-            height: 200,
-            width: 500,
-            child: Image.asset(
-              "assets/clips.png",
-              fit: BoxFit.fitHeight,
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 25),
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back,
+                    color: Color.fromARGB(255, 252, 251, 251)),
+                onPressed: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen())),
+              ),
             ),
-          ),
-          const SizedBox(height: 45),
-          const Text("Registration:", 
-          style: TextStyle(
-            color:Colors.white,
-            fontSize: 20,
-            fontStyle: FontStyle.italic,
+            const SizedBox(height: 20),
+            Container(
+              height: 45,
+              width: 400,
+              child: Image.asset(
+                "assets/Logo.png",
+                fit: BoxFit.fitHeight,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 20.0),
-            child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                  hintText: 'Type in your Email',
-                  filled: true,
-                  fillColor: const Color(0xffFDF6F6),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15))),
-              onChanged: (value) {
-                setState(() {
-                  _email = value.trim();
-                });
-              },
+            const SizedBox(height: 50),
+            Container(
+              height: 200,
+              width: 500,
+              child: Image.asset(
+                "assets/clips.png",
+                fit: BoxFit.fitHeight,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  hintText: "Create a Password",
-                  filled: true,
-                  fillColor: const Color(0xffFDF6F6),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15))),
-              onChanged: (value) {
-                setState(() {
-                  _password = value.trim();
-                });
-              },
+            const SizedBox(height: 45),
+            const Text(
+              "Registration:",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+              ),
             ),
-          ),
-          Container(
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(100, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16), // <-- Radius
-                  ),
-                ),
-                onPressed: () {
-                  auth
-                      .createUserWithEmailAndPassword(
-                          email: _email, password: _password)
-                      .then((_) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()));
+            Padding(
+              padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 20.0),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    hintText: 'Type in your Email',
+                    filled: true,
+                    fillColor: const Color(0xffFDF6F6),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15))),
+                onChanged: (value) {
+                  setState(() {
+                    _email = value.trim();
                   });
                 },
-                child: const Text('Register')),
-          ),
-        ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 40.0),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    hintText: "Create a Password",
+                    filled: true,
+                    fillColor: const Color(0xffFDF6F6),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15))),
+                onChanged: (value) {
+                  setState(() {
+                    _password = value.trim();
+                  });
+                },
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color.fromARGB(255, 226, 92, 77),
+                    fixedSize: const Size(100, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16), // <-- Radius
+                    ),
+                  ),
+                  onPressed: () {
+                    auth
+                        .createUserWithEmailAndPassword(
+                            email: _email, password: _password)
+                        .then((_) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const LoginScreen()));
+                    });
+                  },
+                  child: const Text('Register')),
+            ),
+          ],
+        ),
       ),
     );
   }
