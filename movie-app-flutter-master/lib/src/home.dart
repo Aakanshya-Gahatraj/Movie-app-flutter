@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/src/shows.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'login.dart';
@@ -17,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final readAccessToken =
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMmZmNGI1MGEwMDU4ODU4Yzc0NDZmNmVkMTUzZDA0MiIsInN1YiI6IjYyZDVlZDYwYTQxMGM4MDA1NWRjMDgyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.A8GmBKJETuJkmdVcEp6rF7nT3uXvsFWMjv1rgzh9MPU";
   List trendingList = [];
+  List videosList = [];
   List trailersList = [];
   List tvList = [];
 
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   loadmovies() async {
-    TMDB tmdbWithCustomLogs = TMDB(
+    TMDB tmdb = TMDB(
       ApiKeys(apiKey, readAccessToken),
       logConfig: const ConfigLogger(
         showLogs: true,
@@ -35,20 +35,29 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    Map trendingData = await tmdbWithCustomLogs.v3.trending.getTrending();
-    Map tvData = await tmdbWithCustomLogs.v3.tv.getPopular();
-    // Map trailersList = await tmdbWithCustomLogs.v3.movies.getVideos();
-    // print((latestMovieData));
+    Map trendingData = await tmdb.v3.movies.getPopular();
+    Map tvData = await tmdb.v3.tv.getPopular();
+    // Map trailersData = await tmdbWithCustomLogs.v3.movies.getVideos(762504);
+    // Map trailersData = await tmdb.v3.tv.getVideos(94997);
+    // print('Here    ');
+    // print(trailersData);
 
     setState(() {
       trendingList = trendingData['results'];
       tvList = (tvData['results']);
-      // print("Here-----> " + tvData['name']);
+      // videosList = trailersData['results'];
 
-      // latestList = (latestData['results']);
-      // for (var i = 0; i < tvList.length; i++) {
-      //   print(tvList[i].name);
-      // }
+      // // latestList = (latestData['results']);
+      // // print(trailersList);
+      // for (var i = 0; i < videosList.length; i++) {
+      //   (videosList[i]['type']).toLowerCase() == 'trailer'
+      //       ?
+      //       // print("Key=   " + trailersList[i]['key'])
+      //       trailersList.add(videosList[i]['key'])
+      //       : 'None';
+      // } //trailer video is in 0 index
+      // print(trailersList);
+      // print(videosList);
     });
   }
 
@@ -61,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            // Color.fromARGB(255, 27, 20, 34),
             Color.fromARGB(255, 20, 4, 35),
             Color.fromARGB(255, 0, 0, 0),
           ],
@@ -70,9 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView(
         children: [
           Trend(trending: trendingList),
-          // Movie(latestMovies: latestList),
           TV(tvShows: tvList),
-          const SizedBox(height: 8),
+          const SizedBox(height: 5),
           Center(
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(

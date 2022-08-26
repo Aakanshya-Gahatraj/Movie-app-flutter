@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/src/description.dart';
@@ -19,12 +21,12 @@ class Trend extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 160),
-                  child: Text("Trending",
+                  padding: const EdgeInsets.only(right: 190),
+                  child: Text("Movies",
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         // color: Color.fromARGB(255, 200, 182, 182),
-                        color: Color.fromARGB(255, 233, 228, 228),
+                        color: const Color.fromARGB(255, 233, 228, 228),
                         fontWeight: FontWeight.bold,
                       )),
                 ),
@@ -53,6 +55,9 @@ class Trend extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => MovieDesc(
+                                  id: trending[index]['id'] != null
+                                      ? (trending[index]['id']).toString()
+                                      : "Not loaded",
                                   name: trending[index]['title'] ??
                                       trending[index]['name'],
                                   description: trending[index]['overview'] ??
@@ -97,7 +102,7 @@ class Trend extends StatelessWidget {
                                     trending[index]['title'],
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
-                                      color: Color.fromARGB(255, 233, 228,
+                                      color: const Color.fromARGB(255, 233, 228,
                                           228), // fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,
@@ -106,7 +111,8 @@ class Trend extends StatelessWidget {
                                     trending[index]['name'],
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
-                                      color: Color.fromARGB(255, 233, 228, 228),
+                                      color: const Color.fromARGB(
+                                          255, 233, 228, 228),
                                       // letterSpacing: 1,
                                       // fontWeight: FontWeight.bold,
                                     ),
@@ -123,87 +129,6 @@ class Trend extends StatelessWidget {
   }
 }
 
-// class Movie extends StatelessWidget {
-//   final List latestMovies;
-
-//   const Movie({Key? key, required this.latestMovies}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.only(left: 20, right: 20),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           const Text("Movies ",
-//               style: TextStyle(color: Colors.white, fontSize: 20)),
-//           const SizedBox(height: 20),
-//           Container(
-//               height: 300, //poster height
-//               child: ListView.builder(
-//                   scrollDirection: Axis.horizontal,
-//                   itemCount: latestMovies.length,
-//                   itemBuilder: (context, index) {
-//                     return InkWell(
-//                       onTap: () {
-//                         // Navigator.of(context).pushReplacement(MaterialPageRoute(
-//                         //     builder: (context) => MovieDesc(
-//                         //           name:
-//                         //               latestMovies[index]['title'] ?? 'Loading',
-//                         //           description: latestMovies[index]
-//                         //                   ['overview'] ??
-//                         //               'Not Loaded',
-//                         //           bannerurl: 'https://image.tmdb.org/t/p/w500' +
-//                         //               latestMovies[index]['backdrop_path'],
-//                         //           posterurl: 'https://image.tmdb.org/t/p/w500' +
-//                         //               latestMovies[index]['poster_path'],
-//                         //           vote: latestMovies[index]['vote_average'] !=
-//                         //                   null
-//                         //               ? latestMovies[index]['vote_average']
-//                         //                   .toStringAsFixed(1)
-//                         //               : 'Not Loaded',
-//                         //           launch_on: latestMovies[index]
-//                         //                   ['release_date'] ??
-//                         //               'Loading',
-//                         //         )));
-//                       },
-//                       child: Container(
-//                         width: 140,
-//                         child: Column(
-//                           children: [
-//                             Container(
-//                               decoration: BoxDecoration(
-//                                 image: DecorationImage(
-//                                   image: NetworkImage(
-//                                       'https://image.tmdb.org/t/p/w500' +
-//                                           latestMovies[index]['poster_path']),
-//                                 ),
-//                                 borderRadius:
-//                                     const BorderRadius.all(Radius.circular(10)),
-//                               ),
-//                               height: 200,
-//                             ),
-//                             const SizedBox(height: 20),
-//                             Center(
-//                                 child: latestMovies[index]['title'] != null
-//                                     ? Text(latestMovies[index]['title'],
-//                                         style: const TextStyle(
-//                                             color: Colors.white, fontSize: 16),
-//                                         textAlign: TextAlign.center)
-//                                     : const Text('loading',
-//                                         style: TextStyle(
-//                                             color: Colors.white, fontSize: 16),
-//                                         textAlign: TextAlign.center)),
-//                           ],
-//                         ),
-//                       ),
-//                     );
-//                   })),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class TV extends StatelessWidget {
   final List tvShows;
 
@@ -215,10 +140,10 @@ class TV extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Popular",
+          Text("TV Shows",
               style: GoogleFonts.poppins(
                 fontSize: 28,
-                color: Color.fromARGB(255, 233, 228, 228),
+                color: const Color.fromARGB(255, 233, 228, 228),
                 fontWeight: FontWeight.bold,
               )),
           const SizedBox(height: 15),
@@ -233,6 +158,9 @@ class TV extends StatelessWidget {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => TvDesc(
+                                id: tvShows[index]['id'] != null
+                                    ? (tvShows[index]['id']).toString()
+                                    : "Not loaded",
                                 name: tvShows[index]['name'] ?? 'Not Loaded',
                                 description:
                                     tvShows[index]['overview'] ?? 'Not Loaded',
@@ -270,7 +198,7 @@ class TV extends StatelessWidget {
                                 tvShows[index]['name'] ?? 'Loading',
                                 style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  color: Color.fromARGB(255, 233, 228,
+                                  color: const Color.fromARGB(255, 233, 228,
                                       228), // fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
