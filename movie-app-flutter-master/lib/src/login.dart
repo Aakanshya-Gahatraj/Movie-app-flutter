@@ -12,7 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late String _email, _password;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final auth = FirebaseAuth.instance;
 
   @override
@@ -54,11 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fillColor: const Color(0xffFDF6F6),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15))),
-                onChanged: (value) {
-                  setState(() {
-                    _email = value.trim();
-                  });
-                },
+                controller: emailController,
               ),
             ),
             Padding(
@@ -71,11 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fillColor: const Color(0xffFDF6F6),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15))),
-                onChanged: (value) {
-                  setState(() {
-                    _password = value.trim();
-                  });
-                },
+                controller: passwordController,
               ),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -91,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     auth
                         .signInWithEmailAndPassword(
-                            email: _email, password: _password)
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim())
                         .then((_) {
                       Navigator.push(
                           context,

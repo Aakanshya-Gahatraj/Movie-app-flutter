@@ -10,13 +10,9 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  late String _email, _password;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final auth = FirebaseAuth.instance;
-  int cnt = 0;
-
-  // void showMsg() {
-  //   print(const Text("User Registered!"));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +78,7 @@ class _RegisterState extends State<Register> {
                     fillColor: const Color(0xffFDF6F6),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15))),
-                onChanged: (value) {
-                  setState(() {
-                    _email = value.trim();
-                  });
-                },
+                controller: emailController,
               ),
             ),
             Padding(
@@ -99,11 +91,7 @@ class _RegisterState extends State<Register> {
                     fillColor: const Color(0xffFDF6F6),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15))),
-                onChanged: (value) {
-                  setState(() {
-                    _password = value.trim();
-                  });
-                },
+                controller: passwordController,
               ),
             ),
             Container(
@@ -118,7 +106,8 @@ class _RegisterState extends State<Register> {
                   onPressed: () {
                     auth
                         .createUserWithEmailAndPassword(
-                            email: _email, password: _password)
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim())
                         .then((_) {
                       Navigator.push(
                           context,
