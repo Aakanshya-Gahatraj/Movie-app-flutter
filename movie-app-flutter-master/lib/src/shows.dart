@@ -53,26 +53,33 @@ class Trend extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => MovieDesc(
-                                  id: trending[index]['id'] != null
-                                      ? (trending[index]['id']).toString()
-                                      : "Not loaded",
-                                  name: trending[index]['title'] ??
-                                      trending[index]['name'],
-                                  description: trending[index]['overview'] ??
-                                      'Not Loaded',
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      trending[index]['backdrop_path'],
-                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      trending[index]['poster_path'],
-                                  vote: trending[index]['vote_average'] != null
-                                      ? trending[index]['vote_average']
-                                          .toStringAsFixed(1)
-                                      : 'Not Loaded',
-                                  launch_on: trending[index]['release_date'] ??
-                                      trending[index]["first_air_date"],
-                                )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => MovieDesc(
+                                      id: trending[index]['id'] != null
+                                          ? (trending[index]['id']).toString()
+                                          : "Not loaded",
+                                      name: trending[index]['title'] ??
+                                          'Not Loaded',
+                                      description: trending[index]
+                                              ['overview'] ??
+                                          'Not Loaded',
+                                      bannerurl:
+                                          'https://image.tmdb.org/t/p/w500' +
+                                              trending[index]['backdrop_path'],
+                                      posterurl:
+                                          'https://image.tmdb.org/t/p/w500' +
+                                              trending[index]['poster_path'],
+                                      vote: trending[index]['vote_average'] !=
+                                              null
+                                          ? trending[index]['vote_average']
+                                              .toStringAsFixed(1)
+                                          : 'Not Loaded',
+                                      launch_on: trending[index]
+                                              ['release_date'] ??
+                                          'Not Loaded',
+                                    )));
                       },
                       child: Container(
                         width: 182,
@@ -89,35 +96,20 @@ class Trend extends StatelessWidget {
                                   ),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(20)),
-                                  // borderRadius: BorderRadius.only(
-                                  //       topLeft: Radius.circular(20),
-                                  //       topRight: Radius.circular(20)),
                                 ),
                                 height: 250,
                               ),
                             ),
                             const SizedBox(height: 10),
-                            trending[index]['title'] != null
-                                ? Text(
-                                    trending[index]['title'],
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      color: const Color.fromARGB(255, 233, 228,
-                                          228), // fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )
-                                : Text(
-                                    trending[index]['name'],
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      color: const Color.fromARGB(
-                                          255, 233, 228, 228),
-                                      // letterSpacing: 1,
-                                      // fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )
+                            Text(
+                              trending[index]['title'] ?? 'Loading',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                color: const Color.fromARGB(255, 233, 228,
+                                    228), // fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
                           ],
                         ),
                       ),

@@ -84,15 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(150, 50),
-                  primary: Color.fromARGB(255, 221, 35, 14),
+                  primary: const Color.fromARGB(255, 221, 35, 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30), // <-- Radius
                   ),
                 ),
                 onPressed: () {
                   auth.signOut();
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const LoginScreen()));
+                  Navigator.push(
+                      context,
+                      (MaterialPageRoute(
+                          builder: (context) => const LoginScreen())));
                 },
                 child: const Text(
                   'Logout',

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:movie_app/src/favs.dart';
 import 'package:movie_app/src/home.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -37,12 +36,6 @@ class _MovieDescState extends State<MovieDesc> {
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMmZmNGI1MGEwMDU4ODU4Yzc0NDZmNmVkMTUzZDA0MiIsInN1YiI6IjYyZDVlZDYwYTQxMGM4MDA1NWRjMDgyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.A8GmBKJETuJkmdVcEp6rF7nT3uXvsFWMjv1rgzh9MPU";
   List videosList = [];
   List trailersList = [];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loadmovies();
-  // }
 
   loadmovies(String id) async {
     TMDB tmdbWithCustomLogs = TMDB(
@@ -107,9 +100,8 @@ class _MovieDescState extends State<MovieDesc> {
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back,
                         color: Color.fromARGB(255, 252, 251, 251)),
-                    onPressed: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen())),
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const HomeScreen())),
                   )),
             ),
             SizedBox(
@@ -140,7 +132,7 @@ class _MovieDescState extends State<MovieDesc> {
                     child: Container(
                         width: 393,
                         height: 35,
-                        color: Color.fromARGB(116, 33, 29, 29),
+                        color: const Color.fromARGB(116, 33, 29, 29),
                         // ),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 5, left: 20),
@@ -163,7 +155,7 @@ class _MovieDescState extends State<MovieDesc> {
                   style: GoogleFonts.poppins(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(
+                    color: const Color.fromARGB(
                         255, 233, 228, 228), // fontWeight: FontWeight.bold,
                   ),
                 )),
@@ -174,7 +166,7 @@ class _MovieDescState extends State<MovieDesc> {
                 "Release Date:  " + launch_on,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                       255, 233, 228, 228), // fontWeight: FontWeight.bold,
                 ),
               ),
@@ -190,7 +182,7 @@ class _MovieDescState extends State<MovieDesc> {
                     child: Text(description,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
-                          color: Color.fromARGB(255, 233, 228,
+                          color: const Color.fromARGB(255, 233, 228,
                               228), // fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.justify),
@@ -216,15 +208,16 @@ class _MovieDescState extends State<MovieDesc> {
                     createFav(name: name, rating: 1, watched: false);
                     showDialog(
                         context: context,
-                        builder: (ctx) => AlertDialog(
-                              backgroundColor: Color.fromARGB(255, 61, 120, 74),
+                        builder: (_) => AlertDialog(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 61, 120, 74),
                               title: Text("Successfully Added",
                                   style: GoogleFonts.poppins(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color:
-                                          Color.fromARGB(255, 233, 228, 228))),
-                              content: Icon(
+                                      color: const Color.fromARGB(
+                                          255, 233, 228, 228))),
+                              content: const Icon(
                                 Icons.check,
                                 color: Colors.white,
                               ),
@@ -310,7 +303,7 @@ class TvDesc extends StatelessWidget {
                     child: Container(
                         width: 393,
                         height: 35,
-                        color: Color.fromARGB(116, 33, 29, 29),
+                        color: const Color.fromARGB(116, 33, 29, 29),
                         // ),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 5, left: 20),
@@ -330,7 +323,7 @@ class TvDesc extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(
+                    color: const Color.fromARGB(
                         255, 233, 228, 228), // fontWeight: FontWeight.bold,
                   ),
                 )),
@@ -341,7 +334,7 @@ class TvDesc extends StatelessWidget {
                 "Aired On:  " + aired_on,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                       255, 233, 228, 228), // fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.justify,
@@ -395,13 +388,15 @@ class TvDesc extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (ctx) => AlertDialog(
-                            backgroundColor: Color.fromARGB(255, 61, 120, 74),
+                            backgroundColor:
+                                const Color.fromARGB(255, 61, 120, 74),
                             title: Text("Successfully Added",
                                 style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 233, 228, 228))),
-                            content: Icon(
+                                    color: const Color.fromARGB(
+                                        255, 233, 228, 228))),
+                            content: const Icon(
                               Icons.check,
                               color: Colors.white,
                             ),
@@ -412,7 +407,7 @@ class TvDesc extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(
+                    color: const Color.fromARGB(
                         255, 233, 228, 228), // fontWeight: FontWeight.bold,
                   ),
                 ),

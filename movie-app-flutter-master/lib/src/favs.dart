@@ -6,16 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Favs extends StatefulWidget {
-  // String text;
-  // Favs({Key? key, required this.text}) : super(key: key);
   Favs({Key? key}) : super(key: key);
 
   @override
-  // State<Favs> createState() => _FavsState(text);
   State<Favs> createState() => _FavsState();
 }
 
-// class _FavsState extends State<Favs> {
 class _FavsState extends State<Favs> {
   final fire_store_coll = FirebaseFirestore.instance.collection('favs');
 
@@ -55,7 +51,7 @@ class _FavsState extends State<Favs> {
                 fontWeight: FontWeight.bold,
               )),
         ),
-        backgroundColor: Color.fromARGB(255, 17, 4, 30),
+        backgroundColor: const Color.fromARGB(255, 17, 4, 30),
       ),
       body: Container(
         height: 900,
@@ -83,7 +79,6 @@ class _FavsState extends State<Favs> {
               var data = snapshot.data!;
               return ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   Favmovie movie = data[index];
@@ -92,8 +87,7 @@ class _FavsState extends State<Favs> {
                       fillColor:
                           MaterialStateProperty.resolveWith<Color>((states) {
                         if (states.contains(MaterialState.disabled)) {
-                          return const Color.fromARGB(255, 226, 92, 77)
-                              .withOpacity(.32);
+                          return const Color.fromARGB(255, 226, 92, 77);
                         }
                         return const Color.fromARGB(255, 226, 92, 77);
                       }),
@@ -107,7 +101,7 @@ class _FavsState extends State<Favs> {
                     title: Text(movie.name,
                         style: GoogleFonts.poppins(
                           fontSize: 22,
-                          color: Color.fromARGB(255, 200, 182, 182),
+                          color: const Color.fromARGB(255, 200, 182, 182),
                           // fontWeight: FontWeight.bold,
                         )),
                     subtitle: Row(
