@@ -1,16 +1,9 @@
-# movie_app
+# MOVIE LIST APP
 
-A new Flutter project.
+This project is a simple and convenient mobile application called Movie List built using Flutter. It allows users to explore different popular movies and tv shows around the world, view their details like name, ratings, synopsis etc. as well as watch trailers of the respective movies in one place and add them to their watchlist. The app uses tmdb api, firebase for authentication and database.
 
-## Getting Started
+## A look at the app
 
-This project is a starting point for a Flutter application.
+![image](https://user-images.githubusercontent.com/55166361/191885736-e6c09500-5ba8-4b39-b388-cbdc73b7c16b.png)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
